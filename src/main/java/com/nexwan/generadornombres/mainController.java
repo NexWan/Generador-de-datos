@@ -44,7 +44,7 @@ public class mainController implements Initializable {
 
     public void generar() throws IOException {
         int cantidad;
-        JTextField nombreJT = new JTextField(), apellidoPJT = new JTextField(), apellidoMJT = new JTextField(), telefonoJT = new JTextField(), correoJT = new JTextField(), randomJT = new JTextField(), tablaJT = new JTextField();
+        JTextField nombreJT = new JTextField("nombre"), apellidoPJT = new JTextField("apellidoP"), apellidoMJT = new JTextField("apellidoM"), telefonoJT = new JTextField("telefono"), correoJT = new JTextField("correo"), randomJT = new JTextField("id"), tablaJT = new JTextField("cambiame");
         if(!(apellidoM.isSelected() || apellidoP.isSelected() || nombre.isSelected() || telefono.isSelected() || random.isSelected() || correo.isSelected())) return;
         try{
             cantidad = Integer.parseInt(JOptionPane.showInputDialog(null,"Cuantos datos desea generar?"));
@@ -64,41 +64,54 @@ public class mainController implements Initializable {
                 "Tabla", tablaJT
         };
         JOptionPane.showConfirmDialog(null,fields,"Selecciona",JOptionPane.OK_CANCEL_OPTION);
+        if(tablaJT.getText().equals("cambiame")){
+            JOptionPane.showMessageDialog(null,"Porfavor, dale un nombre a la tabla!!","ERROR!",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         System.out.println(nombreJT.getText());
         String values = "";
         String[] names = new String[0];
         String[] lastPName;
         String[] lastMName = new String[0];
+        LinkedList<String[]> toAdd = new LinkedList<>();
         if (nombre.isSelected()) {
             names = getStrings(cantidad,"nombres");
-            values+=String.format("'%s'",nombreJT.getText());
+            values+=String.format("%s,",nombreJT.getText());
             System.out.println(Arrays.toString(names));
+            toAdd.add(names);
         }
         if (apellidoP.isSelected()) {
             lastPName = getStrings(cantidad,"apellidos");
-            values+=String.format("'%s'",apellidoPJT.getText());
+            values+=String.format("%s,",apellidoPJT.getText());
             System.out.println(Arrays.toString(lastPName));
+            toAdd.add(lastPName);
         }
         if (apellidoM.isSelected()) {
             lastMName = getStrings(cantidad,"apellidos");
-            values+=String.format("'%s'",apellidoMJT.getText());
+            values+=String.format("%s,",apellidoMJT.getText());
             System.out.println(Arrays.toString(lastMName));
+            toAdd.add(lastMName);
         }
         if (telefono.isSelected()) {
             String[] nums = genTel(cantidad);
             System.out.println(Arrays.toString(nums));
-            values+=String.format("'%s'",telefonoJT.getText());
+            values+=String.format("%s,",telefonoJT.getText());
+            toAdd.add(nums);
         }
         if (random.isSelected()) {
             int cant = Integer.parseInt(numGen.getText());
             String[] randoms = genRand(cantidad,cant);
             System.out.println(Arrays.toString(randoms));
-            values+=String.format("'%s'",randomJT);
+            values+=String.format("%s,",randomJT.getText());
+            toAdd.add(randoms);
         }
         if (correo.isSelected()) {
             String[] mails = genMail(cantidad,names,genRand(cantidad,5),getStrings(cantidad,"apellidos"));
             System.out.println(Arrays.toString(mails));
+            values+=String.format("%s",correoJT.getText());
+            toAdd.add(mails);
         }
+        generateScript(toAdd,values,tablaJT.getText(),cantidad);
     }
 
     public void showOption(){
@@ -161,5 +174,29 @@ public class mainController implements Initializable {
             mails[i] = nombre[i].substring(0,4) + "" + apellido[i].substring(0,2).toUpperCase() + "" + rand[i] + correos[r.nextInt(0, correos.length)];
         }
         return mails;
+    }
+
+    public void generateScript(LinkedList<String[]> list, String values, String table, int cantidad){
+        String s[] = new String[cantidad];
+        for (int i = 0; i < cantidad; i++) {
+            s[i]=String.format("INSERT INTO TABLE %s (%s) VALUES(",table,values);
+        }
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).length; j++) {
+                if(i == list.size()-1)
+                    s[j]+=String.format("'%s')",list.get(i)[j]);
+                else
+                    s[j]+=String.format("'%s',",list.get(i)[j]);
+            }
+        }
+        String res = "";
+        for (int i = 0; i < s.length; i++) {
+            res += s[i]+"\n";
+        }
+        JScrollPane scrollPane = new JScrollPane();
+        JTextArea textArea = new JTextArea();
+        textArea.append(res);
+        scrollPane.add(textArea);
+        JOptionPane.showConfirmDialog(null,textArea,"Script resultante!", JOptionPane.YES_NO_OPTION);
     }
 }

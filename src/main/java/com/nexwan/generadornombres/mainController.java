@@ -128,25 +128,23 @@ public class mainController implements Initializable {
 
     public String[] getStrings(int cantidad, String fileName) throws IOException {
         Random r = new Random();
-        File names = new File(Objects.requireNonNull(getClass().getResource(String.format("%s.txt",fileName))).getFile());
-        LinkedList<String> list = createList(names);
+        File namesFile = new File(Objects.requireNonNull(getClass().getResource(String.format("%s.txt", fileName))).getFile());
+        LinkedList<String> list = createList(namesFile);
         String[] listNames = new String[cantidad];
         for (int i = 0; i < cantidad; i++) {
-            listNames[i] = list.get(r.nextInt(0,list.size()-1));
+            listNames[i] = list.get(r.nextInt(0, list.size() - 1));
         }
         return listNames;
     }
 
     public LinkedList<String> createList(File file) throws IOException {
-        FileReader fileReader = new FileReader(file);
         LinkedList<String> list = new LinkedList<>();
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-        String line = "";
-        int i = 0;
-        while(line != null){
-            line = bufferedReader.readLine();
-            if(line != null) list.add(line);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(file.getName())));
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            list.add(line);
         }
+        bufferedReader.close();
         return list;
     }
 

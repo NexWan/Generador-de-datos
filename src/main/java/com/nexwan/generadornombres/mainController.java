@@ -184,7 +184,7 @@ public class mainController implements Initializable {
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list.get(i).length; j++) {
                 if(i == list.size()-1)
-                    s[j]+=String.format("'%s')",list.get(i)[j]);
+                    s[j]+=String.format("'%s');",list.get(i)[j]);
                 else
                     s[j]+=String.format("'%s',",list.get(i)[j]);
             }

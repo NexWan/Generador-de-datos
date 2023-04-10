@@ -12,18 +12,19 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <CheckBox layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="Nombre" fx:id="nombre"/>
-      <CheckBox layoutX="104.0" layoutY="192.0" mnemonicParsing="false" text="Apellido Paterno" fx:id="apellidoP"/>
-      <CheckBox layoutX="227.0" layoutY="192.0" mnemonicParsing="false" text="Apellido Materno" fx:id="apellidoM"/>
-      <CheckBox layoutX="356.0" layoutY="192.0" mnemonicParsing="false" text="Telefono" fx:id="telefono"/>
-      <CheckBox layoutX="439.0" layoutY="192.0" mnemonicParsing="false" text="numeros Random" onAction="#showOption" fx:id="random"/>
-      <Button layoutX="269.0" layoutY="348.0" mnemonicParsing="false" text="Generar!" fx:id="generar" onAction="#generar"/>
+      <CheckBox fx:id="nombre" layoutX="25.0" layoutY="192.0" mnemonicParsing="false" text="Nombre" />
+      <CheckBox fx:id="apellidoP" layoutX="104.0" layoutY="192.0" mnemonicParsing="false" text="Apellido Paterno" />
+      <CheckBox fx:id="apellidoM" layoutX="227.0" layoutY="192.0" mnemonicParsing="false" text="Apellido Materno" />
+      <CheckBox fx:id="telefono" layoutX="356.0" layoutY="192.0" mnemonicParsing="false" text="Telefono" />
+      <CheckBox fx:id="random" layoutX="439.0" layoutY="192.0" mnemonicParsing="false" onAction="#showOption" text="numeros Random" />
+      <Button fx:id="generar" layoutX="269.0" layoutY="348.0" mnemonicParsing="false" onAction="#generar" text="Generar!" />
       <ImageView fx:id="imageLoad" fitHeight="120.0" fitWidth="149.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane layoutX="1.0" layoutY="251.0" prefHeight="73.0" prefWidth="600.0" visible="false" fx:id="hidden">
+      <Pane fx:id="hidden" layoutX="1.0" layoutY="251.0" prefHeight="73.0" prefWidth="600.0" visible="false">
          <children>
             <TextField fx:id="numGen" layoutX="226.0" layoutY="37.0" />
             <Label layoutX="243.0" layoutY="6.0" text="Longitud del numero:" />
          </children>
       </Pane>
+      <CheckBox layoutX="271.0" layoutY="243.0" mnemonicParsing="false" text="Correo" fx:id="correo"/>
    </children>
 </Pane>

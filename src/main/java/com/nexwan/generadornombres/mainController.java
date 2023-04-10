@@ -70,47 +70,55 @@ public class mainController implements Initializable {
         }
         System.out.println(nombreJT.getText());
         String values = "";
-        String[] names = new String[0];
-        String[] lastPName;
-        String[] lastMName = new String[0];
         LinkedList<String[]> toAdd = new LinkedList<>();
+
         if (nombre.isSelected()) {
-            names = getStrings(cantidad,"nombres");
-            values+=String.format("%s,",nombreJT.getText());
+            String[] names = getStrings(cantidad, "nombres");
+            values += String.format("%s,", nombreJT.getText());
             System.out.println(Arrays.toString(names));
             toAdd.add(names);
         }
+
         if (apellidoP.isSelected()) {
-            lastPName = getStrings(cantidad,"apellidos");
-            values+=String.format("%s,",apellidoPJT.getText());
+            String[] lastPName = getStrings(cantidad, "apellidos");
+            values += String.format("%s,", apellidoPJT.getText());
             System.out.println(Arrays.toString(lastPName));
             toAdd.add(lastPName);
         }
+
         if (apellidoM.isSelected()) {
-            lastMName = getStrings(cantidad,"apellidos");
-            values+=String.format("%s,",apellidoMJT.getText());
+            String[] lastMName = getStrings(cantidad, "apellidos");
+            values += String.format("%s,", apellidoMJT.getText());
             System.out.println(Arrays.toString(lastMName));
             toAdd.add(lastMName);
         }
+
         if (telefono.isSelected()) {
             String[] nums = genTel(cantidad);
             System.out.println(Arrays.toString(nums));
-            values+=String.format("%s,",telefonoJT.getText());
+            values += String.format("%s,", telefonoJT.getText());
             toAdd.add(nums);
         }
+
         if (random.isSelected()) {
             int cant = Integer.parseInt(numGen.getText());
-            String[] randoms = genRand(cantidad,cant);
+            String[] randoms = genRand(cantidad, cant);
             System.out.println(Arrays.toString(randoms));
-            values+=String.format("%s,",randomJT.getText());
+            values += String.format("%s,", randomJT.getText());
             toAdd.add(randoms);
         }
+
         if (correo.isSelected()) {
-            String[] mails = genMail(cantidad,names,genRand(cantidad,5),getStrings(cantidad,"apellidos"));
+            String[] names = null;
+            if (nombre.isSelected()) {
+                names = getStrings(cantidad, "nombres");
+            }
+            String[] mails = genMail(cantidad, names, genRand(cantidad, 5), getStrings(cantidad, "apellidos"));
             System.out.println(Arrays.toString(mails));
-            values+=String.format("%s",correoJT.getText());
+            values += String.format("%s", correoJT.getText());
             toAdd.add(mails);
         }
+
         generateScript(toAdd,values,tablaJT.getText(),cantidad);
     }
 

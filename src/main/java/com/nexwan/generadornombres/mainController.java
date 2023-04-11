@@ -64,7 +64,7 @@ public class mainController implements Initializable {
                 "Tabla", tablaJT
         };
         JOptionPane.showConfirmDialog(null,fields,"Selecciona",JOptionPane.OK_CANCEL_OPTION);
-        if(tablaJT.getText().equals("cambiame")){
+        if(tablaJT.getText().equalsIgnoreCase("cambiame") || tablaJT.getText().isBlank() ){
             JOptionPane.showMessageDialog(null,"Porfavor, dale un nombre a la tabla!!","ERROR!",JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -183,9 +183,9 @@ public class mainController implements Initializable {
     }
 
     public void generateScript(LinkedList<String[]> list, String values, String table, int cantidad){
-        String s[] = new String[cantidad];
+        String[] s = new String[cantidad];
         for (int i = 0; i < cantidad; i++) {
-            s[i]=String.format("INSERT INTO TABLE %s (%s) VALUES(",table,values);
+            s[i]=String.format("INSERT INTO %s (%s) VALUES(",table,values);
         }
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list.get(i).length; j++) {
@@ -195,14 +195,14 @@ public class mainController implements Initializable {
                     s[j]+=String.format("'%s',",list.get(i)[j]);
             }
         }
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < s.length; i++) {
-            res += s[i]+"\n";
+            res.append(s[i]).append("\n");
         }
         JScrollPane scrollPane = new JScrollPane();
         JTextArea textArea = new JTextArea();
-        textArea.append(res);
+        textArea.append(res.toString());
         scrollPane.add(textArea);
-        JOptionPane.showConfirmDialog(null,textArea,"Script resultante!", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showMessageDialog(null,textArea,"Script resultante!",JOptionPane.INFORMATION_MESSAGE);
     }
 }

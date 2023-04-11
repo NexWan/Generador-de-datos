@@ -33,3 +33,10 @@ Aqui en esta parte se tiene que espeficificar tomando en cuenta el nombre del at
 ### Script resultante
 Te da un script con la insercion de los datos que pediste ya formateado con su nombre de tabla y de los atributos<br>
 ![image](https://user-images.githubusercontent.com/89736703/230891740-da37a940-1b95-4b9f-b6dd-61d28a976cf9.png)
+
+TO DO:
+- Agregar la opcion de poder agregar datos customizable.
+    Es decir, no depender solamente de los registros que tengo yo.
+- Mejorar la interfaz
+- Hacer uso de alguna api para obtener datos y no depender de un archivo local.
+- Optimizar el codigo

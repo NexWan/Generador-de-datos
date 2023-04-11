@@ -72,9 +72,10 @@ public class mainController implements Initializable {
         System.out.println(nombreJT.getText());
         String values = "";
         LinkedList<String[]> toAdd = new LinkedList<>();
+        String[] names = new String[0];
 
         if (nombre.isSelected()) {
-            String[] names = getStrings(cantidad, "nombres");
+            names = getStrings(cantidad, "nombres");
             values += String.format("%s,", nombreJT.getText());
             System.out.println(Arrays.toString(names));
             toAdd.add(names);
@@ -110,10 +111,8 @@ public class mainController implements Initializable {
         }
 
         if (correo.isSelected()) {
-            String[] names = null;
-            if (nombre.isSelected()) {
+            if (!nombre.isSelected())
                 names = getStrings(cantidad, "nombres");
-            }
             String[] mails = genMail(cantidad, names, genRand(cantidad, 5), getStrings(cantidad, "apellidos"));
             System.out.println(Arrays.toString(mails));
             values += String.format("%s", correoJT.getText());
@@ -185,6 +184,8 @@ public class mainController implements Initializable {
 
     public void generateScript(LinkedList<String[]> list, String values, String table, int cantidad){
         String[] s = new String[cantidad];
+        if(!correo.isSelected())
+            values = values.substring(0,values.length()-1);
         for (int i = 0; i < cantidad; i++) {
             s[i]=String.format("INSERT INTO %s (%s) VALUES(",table,values);
         }

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nexwan.generadornombres.mainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nexwan.generadornombres.mainController">
    <children>
       <Label layoutX="77.0" layoutY="7.0" text="Generador de datos para bases de datos">
          <font>
@@ -19,12 +19,16 @@
       <CheckBox fx:id="random" layoutX="439.0" layoutY="192.0" mnemonicParsing="false" onAction="#showOption" text="numeros Random" />
       <Button fx:id="generar" layoutX="269.0" layoutY="348.0" mnemonicParsing="false" onAction="#generar" text="Generar!" />
       <ImageView fx:id="imageLoad" fitHeight="120.0" fitWidth="149.0" layoutX="8.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="hidden" layoutX="1.0" layoutY="251.0" prefHeight="73.0" prefWidth="600.0" visible="false">
+      <Pane fx:id="hidden" layoutX="1.0" layoutY="264.0" prefHeight="73.0" prefWidth="600.0" visible="false">
          <children>
-            <TextField fx:id="numGen" layoutX="226.0" layoutY="37.0" />
-            <Label layoutX="243.0" layoutY="6.0" text="Longitud del numero:" />
+            <TextField fx:id="numGen" layoutX="452.0" layoutY="37.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label layoutX="456.0" layoutY="6.0" text="Longitud del numero:" />
+            <Label layoutX="310.0" layoutY="6.0" text="Numero predefinido" />
+            <TextField fx:id="numPredTF" layoutX="322.0" layoutY="37.0" prefHeight="25.0" prefWidth="85.0" />
          </children>
       </Pane>
-      <CheckBox layoutX="271.0" layoutY="243.0" mnemonicParsing="false" text="Correo" fx:id="correo"/>
+      <CheckBox fx:id="correo" layoutX="361.0" layoutY="243.0" mnemonicParsing="false" text="Correo" />
+      <CheckBox fx:id="numPred" layoutX="146.0" layoutY="243.0" mnemonicParsing="false" text="Num Predefinido" onAction="#showOption"/>
+      <CheckBox fx:id="Genero" layoutX="270.0" layoutY="243.0" mnemonicParsing="false" text="Genero" />
    </children>
 </Pane>

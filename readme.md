@@ -3,6 +3,8 @@ Este proyecto tiene la finalidad de crear datos para bases de datos.
 <br>
 Este proyecto funcionara con una lista de texto que tenga ciertos datos y numeros random
 que se crearan a partir de codigo.<br>
+ESTE PROYECTO UTILIZA JDK 20 ASEGURATE DETENERLO DESCARGADO
+[JDK](https://www.oracle.com/mx/java/technologies/downloads/#jdk20-windows)
 
 ## DATOS QUE GENERA DE MOMENTO
 - Nombre

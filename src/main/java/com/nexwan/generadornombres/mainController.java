@@ -55,7 +55,12 @@ public class mainController implements Initializable {
             int cantidad;
             JTextField nombreJT = new JTextField("nombre"), apellidoPJT = new JTextField("apellidoP"), apellidoMJT = new JTextField("apellidoM"), telefonoJT = new JTextField("telefono"), correoJT = new JTextField("correo"), randomJT = new JTextField("id"), tablaJT = new JTextField("cambiame"),
             numPredJT = new JTextField("Numero predefinido"), generoJT = new JTextField("Genero");
-            if(!(apellidoM.isSelected() || apellidoP.isSelected() || nombre.isSelected() || telefono.isSelected() || random.isSelected() || correo.isSelected())) return;
+            if(!(Genero.isSelected() || numPred.isSelected() || apellidoM.isSelected() || apellidoP.isSelected() || nombre.isSelected() || telefono.isSelected() || random.isSelected() || correo.isSelected())) return;
+            if ((numPred.isSelected() && (numPredTF.getText().isBlank() || numPredTF.getText().isEmpty())) ||
+                    (random.isSelected() && (numGen.getText().isEmpty() || numGen.getText().isBlank()))) {
+                JOptionPane.showMessageDialog(null,"El campo de numero predefinido o longitud de numero no puede estar vacio!!!!");
+                return;
+            }
             try{
                 cantidad = Integer.parseInt(JOptionPane.showInputDialog(null,"Cuantos datos desea generar?"));
             }catch (Exception e){

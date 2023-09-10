@@ -16,6 +16,9 @@ ESTE PROYECTO UTILIZA JDK 20 ASEGURATE DETENERLO DESCARGADO
 - Genero
 - Numero predefinido (Si quieres que todos los registros que generes tengan algun numero como un foreign key)
 
+Cabe mencionar que lo ques el campo de Genero de momento lo genera en base a 1 solo caraceter 'F' o 'M', luego agregare la opcion de que 
+pueda ser el nombre completo o el caracter dependiendo de como lo quiera el usuario
+
 ## Que archivos hay?
 El archivo cuenta solamente con 2 archivos de texto, uno para los [nombres](https://github.com/NexWan/Generador-de-datos/blob/master/src/main/resources/com/nexwan/generadornombres/nombres.txt) y otro
 para los [apellidos](https://github.com/NexWan/Generador-de-datos/blob/master/src/main/resources/com/nexwan/generadornombres/apellidos.txt).<br>
